@@ -1,0 +1,10 @@
+Package: sinchokur
+Type: Package
+Title: manage your sinchoku
+Version: 0.1
+Date: 2015-01-01
+Author: dichika
+Maintainer: dichika <yourfault@somewhere.net>
+Description: manage your sinchoku with R
+Imports: twitteR
+License: MIT
