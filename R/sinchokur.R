@@ -3,7 +3,8 @@ getRemain <- function(f,trgrow){
   knitr::knit2html(f)
   d <- suppressWarnings(readLines(f))
   count <- length(d)-trgrow
-  res <- sprintf("残り%s行です",count)
+  per <- round(trgrow*100/length(d), 1)
+  res <- sprintf("残り%s行です(進捗%s%%)",count, per)
 }
 
 #' @export
