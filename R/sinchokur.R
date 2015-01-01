@@ -14,7 +14,7 @@ getRemainTw <- function(f,trgrow,consumerKey=NULL,consumerSecret=NULL){
   if(is.null(consumerKey)){
     consumerKey <- getOption("CONSUMER_KEY")    
   }
-  if(is.null(consumerKey)){
+  if(is.null(consumerSecret)){
     consumerSecret <- getOption("CONSUMER_SECRET")    
   }
   setup_twitter_oauth(consumerKey, consumerSecret)
