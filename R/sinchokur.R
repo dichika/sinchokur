@@ -5,7 +5,6 @@ getRemain <- function(f,trgrow){
   count <- length(d)-trgrow
   per <- round(trgrow*100/length(d), 1)
   res <- sprintf("残り%s行です(進捗%s%%)",count, per)
-  cat(res)
 }
 
 #' @export
