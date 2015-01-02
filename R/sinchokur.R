@@ -1,16 +1,16 @@
 #' @export
-getRemain <- function(f,trgrow){
-  knitr::knit2html(f)
-  d <- suppressWarnings(readLines(f))
+getRemain <- function(fn,trgrow){
+  knitr::knit2html(fn)
+  d <- suppressWarnings(readLines(fn))
   count <- length(d)-trgrow
   per <- round(trgrow*100/length(d), 1)
   res <- sprintf("残り%s行です(進捗%s%%)",count, per)
 }
 
 #' @export
-getRemainTw <- function(f,trgrow,consumerKey=NULL,consumerSecret=NULL){
+getRemainTw <- function(fn,trgrow,consumerKey=NULL,consumerSecret=NULL){
   require(twitteR)
-  tw <- getRemain(f,trgrow)
+  tw <- getRemain(fn,trgrow)
   if(is.null(consumerKey)){
     consumerKey <- getOption("CONSUMER_KEY")    
   }
