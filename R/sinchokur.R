@@ -8,6 +8,16 @@ getRemain <- function(fn,trgrow){
 }
 
 #' @export
+getRemainPaper <- function (fn, trgcount){
+  d <- suppressWarnings(readLines(fn))
+  d <- d[!grepl("\\*.+", d)]
+  nowcount <- length(unlist(strsplit(d, split="[[:space:]]")))
+  diffcount <- nowcount - trgrow
+  percount <- round(trgcount * 100/nowcount, 1)
+  res <- sprintf("現在%s語です(進捗%s%%)", diffcount, percount)
+}
+
+#' @export
 getRemainTw <- function(fn,trgrow,consumerKey=NULL,consumerSecret=NULL){
   require(twitteR)
   tw <- getRemain(fn,trgrow)
