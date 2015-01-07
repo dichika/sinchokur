@@ -12,8 +12,8 @@ getRemainPaper <- function (fn, trgcount){
   d <- suppressWarnings(readLines(fn))
   d <- d[!grepl("\\*.+", d)]
   nowcount <- length(unlist(strsplit(d, split="[[:space:]]")))
-  diffcount <- nowcount - trgcount
-  percount <- round(trgcount * 100/nowcount, 1)
+  diffcount <- trgcount - nowcount
+  percount <- round(nowcount * 100/trgcount, 1)
   res <- sprintf("現在%s語です(進捗%s%%)", diffcount, percount)
 }
 
