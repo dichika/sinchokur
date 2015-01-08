@@ -27,7 +27,8 @@ getPubContribution <- function(username){
   u <- sprintf("https://github.com/users/%s/contributions", username)
   h <- html(u) %>% html_nodes("rect")
   res <- data.frame(date=html_attr(h, "data-date"), 
-                    count=html_attr(h, "data-count")
+                    count=as.numeric(html_attr(h, "data-count")),
+                    stringsAsFactors=FALSE
   )
   return(res)
 }
