@@ -8,16 +8,6 @@ getRemain <- function(fn,trgrow){
 }
 
 #' @export
-getRemainPaper <- function (fn, trgcount){
-  d <- suppressWarnings(readLines(fn))
-  d <- d[!grepl("\\*.+", d)]
-  nowcount <- length(unlist(strsplit(d, split="[[:space:]]")))
-  diffcount <- trgcount - nowcount
-  percount <- round(nowcount * 100/trgcount, 1)
-  res <- sprintf("現在%s語です(残り%s語 進捗%s%%)", nowcount, diffcount, percount)
-}
-
-#' @export
 getRemainTw <- function(fn,trgrow,consumerKey=NULL,consumerSecret=NULL){
   require(twitteR)
   tw <- getRemain(fn,trgrow)
@@ -29,4 +19,15 @@ getRemainTw <- function(fn,trgrow,consumerKey=NULL,consumerSecret=NULL){
   }
   setup_twitter_oauth(consumerKey, consumerSecret)
   tweet(tw)
+}
+
+#' @export
+getPubContribution <- function(username){
+  require(rvest)
+  u <- sprintf("https://github.com/users/%s/contributions", username)
+  h <- html(u) %>% html_nodes("rect")
+  res <- data.frame(date=html_attr(h, "data-date"), 
+                    count=html_attr(h, "data-count")
+  )
+  return(res)
 }
