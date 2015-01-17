@@ -32,3 +32,27 @@ getPubContribution <- function(username){
   )
   return(res)
 }
+
+#' @export
+iijanaidesuka <- function(consumerKey=NULL,consumerSecret=NULL, 
+                          tw_username="dichika", github_username="dichika"){
+  if(length(find.package("AnomalyDetection",quiet=TRUE))==0){
+    stop("Install 'AnomalyDetection' package from https://github.com/twitter/AnomalyDetection")
+  }
+  require(twitteR)
+  require(AnomalyDetection)
+  if(is.null(consumerKey)){
+    consumerKey <- getOption("CONSUMER_KEY")    
+  }
+  if(is.null(consumerSecret)){
+    consumerSecret <- getOption("CONSUMER_SECRET")    
+  }
+  setup_twitter_oauth(consumerKey, consumerSecret)
+  dat <- getPubContribution(username=github_username)
+  dat$date <- as.POSIXct(paste0(dat$date, " 01:00:00"))
+  res <- AnomalyDetectionTs(dat, max_anoms=0.02, direction='pos')
+  recent <- as.Date(max(res$anoms$timestamp))
+  tw <- sprintf("@%s %sの進捗、いいじゃないですか https://dl.dropboxusercontent.com/u/956851/yeah.wav #進捗",
+                tw_username, recent)
+  tweet(tw)
+}
