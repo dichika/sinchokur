@@ -34,8 +34,8 @@ getPubContribution <- function(username){
 }
 
 #' @export
-iijanaidesuka <- function(consumerKey=NULL,consumerSecret=NULL, 
-                          tw_username="dichika", github_username="dichika"){
+iijanaidesuka <- function(tw_username="dichika", github_username="dichika",
+                          consumerKey=NULL,consumerSecret=NULL){
   if(length(find.package("AnomalyDetection",quiet=TRUE))==0){
     stop("Install 'AnomalyDetection' package from https://github.com/twitter/AnomalyDetection")
   }
