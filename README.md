@@ -29,6 +29,9 @@ options(CONSUMER_KEY="XXXXXXXXXXXXX",
 
 ###進捗をほめる
 ```r
+# AnomalyDetectionパッケージをインストールしておく
+devtools::install_github(“twitter/AnomalyDetection”)
+
 iijanaidesuka(ほめたい相手のtwitterid,ほめたい相手のgithubのusername,twitterのCONSUMER_KEY,twitterのCONSUMER_SECRET)
 ```
 こんな感じでつぶやく。
